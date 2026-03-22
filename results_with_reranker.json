@@ -1,0 +1,7 @@
+{
+  "faithfulness": NaN,
+  "answer_relevancy": NaN,
+  "context_recall": NaN,
+  "context_precision": NaN,
+  "n_questions": 3
+}

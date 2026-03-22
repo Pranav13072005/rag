@@ -7,23 +7,22 @@ Deploy: push to Hugging Face Spaces as a Streamlit app.
 """
 import os
 import subprocess
+import sys
+sys.path.append(".")
 
 if not os.path.exists("data/raw"):
     subprocess.run(["python", "src/download_papers.py"])
-
-if not os.path.exists("chroma_db"):
-    subprocess.run(["python", "src/ingest.py"])
 
 import streamlit as st
 from pipeline import RAGPipeline
 # ---- Page config ---------------------------------------------------------
 st.set_page_config(
     page_title="RAG Document QA",
-    page_icon="📚",
+    # page_icon="📚",
     layout="wide"
 )
 
-st.title("📚 Document QA — RAG System")
+st.title("Document QA — RAG System")
 st.caption(
     "Ask questions about the document corpus. "
     "Answers are grounded in retrieved passages, not LLM memory."
@@ -54,18 +53,18 @@ if query:
     with st.spinner("Retrieving context and generating answer..."):
         result = pipeline.query(query)
 
-    st.markdown("### 🧠 Answer")
+    st.markdown("###Answer:")
     st.markdown(result["answer"])
 
     if show_sources:
-        st.markdown("### 📎 Retrieved Passages")
+        st.markdown("### Retrieved Passages")
         for i, doc in enumerate(result["retrieved_docs"]):
             source = doc.metadata.get("source", "unknown").split("/")[-1]
             page   = doc.metadata.get("page", "?")
             with st.expander(f"Passage {i+1} — {source} (page {page})"):
                 st.write(doc.page_content)
 
-    with st.expander("📊 Usage stats"):
+    with st.expander("Usage stats"):
         st.json({
             "model": result["model"],
             "n_sources": len(result["retrieved_docs"])
