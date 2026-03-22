@@ -8,8 +8,12 @@ Deploy: push to Hugging Face Spaces as a Streamlit app.
 import os
 import subprocess
 
+if not os.path.exists("data/raw"):
+    subprocess.run(["python", "src/download_papers.py"])
+
 if not os.path.exists("chroma_db"):
     subprocess.run(["python", "src/ingest.py"])
+
 import streamlit as st
 from src.pipeline import RAGPipeline
 
