@@ -15,8 +15,7 @@ if not os.path.exists("chroma_db"):
     subprocess.run(["python", "src/ingest.py"])
 
 import streamlit as st
-from src.pipeline import RAGPipeline
-
+from pipeline import RAGPipeline
 # ---- Page config ---------------------------------------------------------
 st.set_page_config(
     page_title="RAG Document QA",

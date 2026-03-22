@@ -17,7 +17,7 @@ from ragas.metrics import (
     context_precision
 )
 from datasets import Dataset
-from src.pipeline import RAGPipeline
+from pipeline import RAGPipeline
 from typing import List, Dict
 import json
 import os

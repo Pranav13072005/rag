@@ -8,8 +8,11 @@ This is the object you'll use everywhere: in the UI, in evaluation,
 in the benchmark script. One call to pipeline.query() does everything.
 """
 
-from src.retriever import RAGRetriever
-from src.generator import generate_answer
+# from src.retriever import RAGRetriever
+# from src.generator import generate_answer
+
+from retriever import RAGRetriever
+from generator import generate_answer
 from typing import Dict
 
 

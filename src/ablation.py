@@ -10,8 +10,8 @@ This is your main experiment result.
 """
 
 import json
-from src.pipeline import RAGPipeline
-from src.evaluate import run_evaluation, print_results_table
+from pipeline import RAGPipeline
+from evaluate import run_evaluation, print_results_table
 
 
 def run_ablation():
