@@ -45,10 +45,15 @@ class RAGRetriever:
         )
 
         # Stage 1: ChromaDB vectorstore
+        # if not os.path.exists(CHROMA_DIR):
+        #     raise FileNotFoundError(
+        #         f"Vectorstore not found at {CHROMA_DIR}. Run src/ingest.py first."
+        #     )
         if not os.path.exists(CHROMA_DIR):
-            raise FileNotFoundError(
-                f"Vectorstore not found at {CHROMA_DIR}. Run src/ingest.py first."
-            )
+            print("Vector DB not found. Running ingestion pipeline...")
+            from src.ingest import build_vectorstore
+            build_vectorstore()
+            print("Vector DB built successfully.")
         self.vectorstore = Chroma(
             persist_directory=CHROMA_DIR,
             embedding_function=self.embeddings,
