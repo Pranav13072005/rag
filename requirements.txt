@@ -1,3 +1,11 @@
-altair
-pandas
 streamlit
+langchain==0.1.16
+langchain-community==0.0.33
+chromadb
+sentence-transformers
+groq
+pypdf
+tqdm
+numpy
+python-dotenv
+torch
